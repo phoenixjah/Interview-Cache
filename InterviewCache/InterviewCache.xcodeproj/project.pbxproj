@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B35F396515AC6D6F0018B864 /* ProjectTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B35F396415AC6D6F0018B864 /* ProjectTableCell.m */; };
 		C81317F015A6CE2A0059453A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C81317EF15A6CE2A0059453A /* UIKit.framework */; };
 		C81317F215A6CE2A0059453A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C81317F115A6CE2A0059453A /* Foundation.framework */; };
 		C81317F415A6CE2A0059453A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C81317F315A6CE2A0059453A /* CoreGraphics.framework */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B35F396315AC6D6F0018B864 /* ProjectTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTableCell.h; sourceTree = "<group>"; };
+		B35F396415AC6D6F0018B864 /* ProjectTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTableCell.m; sourceTree = "<group>"; };
 		C81317EB15A6CE2A0059453A /* InterviewCache.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterviewCache.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C81317EF15A6CE2A0059453A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C81317F115A6CE2A0059453A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,6 +96,8 @@
 				C8943E2715AC1C4700AACE1C /* PeopleViewController.h */,
 				C8943E2815AC1C4700AACE1C /* PeopleViewController.m */,
 				C81317F615A6CE2A0059453A /* Supporting Files */,
+				B35F396315AC6D6F0018B864 /* ProjectTableCell.h */,
+				B35F396415AC6D6F0018B864 /* ProjectTableCell.m */,
 			);
 			path = InterviewCache;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				C813180615A6CE2A0059453A /* InterviewCacheViewController.m in Sources */,
 				C8943E2615AC1BD700AACE1C /* ProjectViewController.m in Sources */,
 				C8943E2915AC1C4700AACE1C /* PeopleViewController.m in Sources */,
+				B35F396515AC6D6F0018B864 /* ProjectTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

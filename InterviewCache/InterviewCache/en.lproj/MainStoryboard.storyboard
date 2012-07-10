@@ -6,21 +6,21 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
-        <!--Project View Controller-->
+        <!--Project View Controller - Projects-->
         <scene sceneID="myG-BT-SeB">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B7V-gG-Zet" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="w2M-Uf-XKh" customClass="ProjectViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nRX-Ka-zYe">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" id="nRX-Ka-zYe">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8Gm-tI-D7A">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Project Cell" rowHeight="72" id="8Gm-tI-D7A">
+                                <rect key="frame" x="0.0" y="22" width="320" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="71"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -31,29 +31,40 @@
                             <outlet property="delegate" destination="w2M-Uf-XKh" id="RCB-ph-BfH"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="POb-cH-ffR"/>
+                    <navigationItem key="navigationItem" title="Projects" id="POb-cH-ffR">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="Cx5-aQ-GgR">
+                            <connections>
+                                <action selector="editProjectTable:" destination="w2M-Uf-XKh" id="TO2-Kf-YZh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="zXw-7M-S2G">
+                            <connections>
+                                <action selector="addProjectTable:" destination="w2M-Uf-XKh" id="vwf-gt-bOA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="UMz-kt-LgV" kind="push" id="lIe-if-ZAk"/>
+                        <segue destination="UMz-kt-LgV" kind="push" identifier="Project to People" id="lIe-if-ZAk"/>
                     </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="-9" y="-53"/>
         </scene>
-        <!--People View Controller-->
+        <!--People View Controller - People-->
         <scene sceneID="gZJ-d3-Vly">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jc5-nx-S6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="UMz-kt-LgV" customClass="PeopleViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XgK-Ff-6x6">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="77" sectionHeaderHeight="22" sectionFooterHeight="22" id="XgK-Ff-6x6">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="VQu-Ev-wYy">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="People Cell" rowHeight="77" id="VQu-Ev-wYy">
+                                <rect key="frame" x="0.0" y="22" width="320" height="77"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="76"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -64,9 +75,20 @@
                             <outlet property="delegate" destination="UMz-kt-LgV" id="8jN-bQ-LWz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Vmf-mj-VBC"/>
+                    <navigationItem key="navigationItem" title="People" id="Vmf-mj-VBC">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="EmR-Zb-FzN">
+                            <connections>
+                                <action selector="editPeopleTable:" destination="UMz-kt-LgV" id="ynS-68-C63"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="H6Y-qr-hXu">
+                            <connections>
+                                <action selector="addPeopleTable:" destination="UMz-kt-LgV" id="Y22-ap-nVt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="2" kind="push" id="0vx-Kr-kSA"/>
+                        <segue destination="2" kind="push" identifier="People to Individual" id="0vx-Kr-kSA"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -112,15 +134,9 @@
         </class>
         <class className="PeopleViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addPeople:"/>
-            </relationships>
         </class>
         <class className="ProjectViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addProject:"/>
-            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

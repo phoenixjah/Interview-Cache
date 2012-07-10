@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ProjectViewController : UITableViewController
-- (IBAction)addProject:(id)sender;
-
+@property (nonatomic,strong) NSMutableArray *projectList;
 @end

@@ -13,6 +13,22 @@
 @end
 
 @implementation PeopleViewController
+@synthesize peopleList = _peopleList;
+
+-(void)setPeopleList:(NSMutableArray *)peopleList{
+    
+    if(_peopleList!=peopleList){
+        _peopleList = peopleList;
+        [self.tableView reloadData];
+    }
+}
+
+- (IBAction)addPeopleTable:(id)sender {
+}
+
+- (IBAction)editPeopleTable:(id)sender {
+    NSLog(@"in editPeopleTable");
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -48,21 +64,15 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 0;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
+    return [self.peopleList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"PeopleCell";
+    static NSString *CellIdentifier = @"People Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...

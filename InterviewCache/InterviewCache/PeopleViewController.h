@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PeopleViewController : UITableViewController
-- (IBAction)addPeople:(id)sender;
+@property (nonatomic,strong) NSMutableArray *peopleList;
 
 @end

@@ -7,12 +7,49 @@
 //
 
 #import "ProjectViewController.h"
+#import "ProjectTableCell.h"
+#import "PeopleViewController.h"
 
-@interface ProjectViewController ()
-
+@interface ProjectViewController ()<UIAlertViewDelegate>
+@property (nonatomic,strong) NSMutableDictionary *projectDictionary;
 @end
 
 @implementation ProjectViewController
+@synthesize projectList = _projectList;
+@synthesize projectDictionary = _prjectDictionary;
+
+-(void)setProjectList:(NSMutableArray *)projectList{
+    if (_projectList != projectList) {
+        _projectList = projectList;
+        [self.tableView reloadData];
+    }
+}
+
+- (IBAction)addProjectTable:(id)sender {
+    
+    UIAlertView *inputProjectName = [[UIAlertView alloc] initWithTitle:@"New Project" 
+                                                               message:nil 
+                                                              delegate:self
+                                                     cancelButtonTitle:@"Cancel" 
+                                                     otherButtonTitles:@"OK", nil];
+    inputProjectName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [inputProjectName textFieldAtIndex:0].placeholder = @"Name of Project";
+    [inputProjectName textFieldAtIndex:0].autocapitalizationType = UITextAutocapitalizationTypeWords;
+
+    [inputProjectName show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {//click done
+        [self.projectList insertObject:[alertView textFieldAtIndex:0].text atIndex:0];
+        [self.tableView reloadData];
+    }
+}
+
+- (IBAction)editProjectTable:(id)sender {
+    NSLog(@"Hello all");
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,6 +63,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.projectList = [[NSMutableArray alloc] init];
+    self.projectDictionary = [[NSMutableDictionary alloc] init];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -48,25 +88,22 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 0;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
+    return [self.projectList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ProjectCell";
+    static NSString *CellIdentifier = @"Project Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Project Cell"];
+    }
     // Configure the cell...
-    
+    cell.textLabel.text = [self.projectList objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -113,15 +150,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    NSString *selectedProject = [self.projectList objectAtIndex:indexPath.row];
+    PeopleViewController *nextController = [self.projectDictionary valueForKey:selectedProject];
+    if (nextController == nil) {
+        //NSLog(@"need init new PeopleViewController");
+        nextController = [[PeopleViewController alloc] init];
+        nextController.title = selectedProject;
+        [self.projectDictionary setValue:nextController forKey:selectedProject];
+    }
+
+    
+    [self.navigationController pushViewController:nextController animated:YES];
 }
 
-- (IBAction)addProject:(id)sender {
-}
 @end
