@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ProjectViewController : UITableViewController
+- (IBAction)addProject:(id)sender;
 
 @end

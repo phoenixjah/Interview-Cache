@@ -90,9 +90,9 @@
 				C813180115A6CE2A0059453A /* MainStoryboard.storyboard */,
 				C813180415A6CE2A0059453A /* InterviewCacheViewController.h */,
 				C813180515A6CE2A0059453A /* InterviewCacheViewController.m */,
-				C81317F615A6CE2A0059453A /* Supporting Files */,
 				C8943E2715AC1C4700AACE1C /* PeopleViewController.h */,
 				C8943E2815AC1C4700AACE1C /* PeopleViewController.m */,
+				C81317F615A6CE2A0059453A /* Supporting Files */,
 			);
 			path = InterviewCache;
 			sourceTree = "<group>";

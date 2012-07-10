@@ -112,9 +112,15 @@
         </class>
         <class className="PeopleViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addPeople:"/>
+            </relationships>
         </class>
         <class className="ProjectViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addProject:"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

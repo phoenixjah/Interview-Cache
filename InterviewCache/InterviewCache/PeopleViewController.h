@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PeopleViewController : UITableViewController
+- (IBAction)addPeople:(id)sender;
 
 @end
