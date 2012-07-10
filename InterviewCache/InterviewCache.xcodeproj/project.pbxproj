@@ -15,6 +15,8 @@
 		C813180015A6CE2A0059453A /* InterviewCacheAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C81317FF15A6CE2A0059453A /* InterviewCacheAppDelegate.m */; };
 		C813180315A6CE2A0059453A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C813180115A6CE2A0059453A /* MainStoryboard.storyboard */; };
 		C813180615A6CE2A0059453A /* InterviewCacheViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C813180515A6CE2A0059453A /* InterviewCacheViewController.m */; };
+		C8943E2615AC1BD700AACE1C /* ProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8943E2515AC1BD700AACE1C /* ProjectViewController.m */; };
+		C8943E2915AC1C4700AACE1C /* PeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8943E2815AC1C4700AACE1C /* PeopleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,10 @@
 		C813180215A6CE2A0059453A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		C813180415A6CE2A0059453A /* InterviewCacheViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterviewCacheViewController.h; sourceTree = "<group>"; };
 		C813180515A6CE2A0059453A /* InterviewCacheViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterviewCacheViewController.m; sourceTree = "<group>"; };
+		C8943E2415AC1BD700AACE1C /* ProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectViewController.h; path = ../ProjectViewController.h; sourceTree = "<group>"; };
+		C8943E2515AC1BD700AACE1C /* ProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectViewController.m; path = ../ProjectViewController.m; sourceTree = "<group>"; };
+		C8943E2715AC1C4700AACE1C /* PeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController.h; sourceTree = "<group>"; };
+		C8943E2815AC1C4700AACE1C /* PeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +83,16 @@
 		C81317F515A6CE2A0059453A /* InterviewCache */ = {
 			isa = PBXGroup;
 			children = (
+				C8943E2415AC1BD700AACE1C /* ProjectViewController.h */,
+				C8943E2515AC1BD700AACE1C /* ProjectViewController.m */,
 				C81317FE15A6CE2A0059453A /* InterviewCacheAppDelegate.h */,
 				C81317FF15A6CE2A0059453A /* InterviewCacheAppDelegate.m */,
 				C813180115A6CE2A0059453A /* MainStoryboard.storyboard */,
 				C813180415A6CE2A0059453A /* InterviewCacheViewController.h */,
 				C813180515A6CE2A0059453A /* InterviewCacheViewController.m */,
 				C81317F615A6CE2A0059453A /* Supporting Files */,
+				C8943E2715AC1C4700AACE1C /* PeopleViewController.h */,
+				C8943E2815AC1C4700AACE1C /* PeopleViewController.m */,
 			);
 			path = InterviewCache;
 			sourceTree = "<group>";
@@ -164,6 +174,8 @@
 				C81317FC15A6CE2A0059453A /* main.m in Sources */,
 				C813180015A6CE2A0059453A /* InterviewCacheAppDelegate.m in Sources */,
 				C813180615A6CE2A0059453A /* InterviewCacheViewController.m in Sources */,
+				C8943E2615AC1BD700AACE1C /* ProjectViewController.m in Sources */,
+				C8943E2915AC1C4700AACE1C /* PeopleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +287,7 @@
 				C813180B15A6CE2A0059453A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
