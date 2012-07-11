@@ -32,11 +32,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Projects" id="POb-cH-ffR">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="Cx5-aQ-GgR">
-                            <connections>
-                                <action selector="editProjectTable:" destination="w2M-Uf-XKh" id="TO2-Kf-YZh"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="zXw-7M-S2G">
                             <connections>
                                 <action selector="addProjectTable:" destination="w2M-Uf-XKh" id="vwf-gt-bOA"/>
@@ -54,9 +49,9 @@
         <scene sceneID="gZJ-d3-Vly">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jc5-nx-S6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="UMz-kt-LgV" customClass="PeopleViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PeopleViewController" id="UMz-kt-LgV" customClass="PeopleViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="77" sectionHeaderHeight="22" sectionFooterHeight="22" id="XgK-Ff-6x6">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -76,11 +71,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="People" id="Vmf-mj-VBC">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="EmR-Zb-FzN">
-                            <connections>
-                                <action selector="editPeopleTable:" destination="UMz-kt-LgV" id="ynS-68-C63"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="H6Y-qr-hXu">
                             <connections>
                                 <action selector="addPeopleTable:" destination="UMz-kt-LgV" id="Y22-ap-nVt"/>
@@ -128,17 +118,6 @@
             <point key="canvasLocation" x="-503" y="-53"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="InterviewCacheViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InterviewCacheViewController.h"/>
-        </class>
-        <class className="PeopleViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
-        </class>
-        <class className="ProjectViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProjectViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -47,9 +47,6 @@
     }
 }
 
-- (IBAction)editProjectTable:(id)sender {
-    NSLog(@"Hello all");
-}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -154,12 +151,11 @@
     PeopleViewController *nextController = [self.projectDictionary valueForKey:selectedProject];
     if (nextController == nil) {
         //NSLog(@"need init new PeopleViewController");
-        nextController = [[PeopleViewController alloc] init];
+        nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"PeopleViewController"];
         nextController.title = selectedProject;
         [self.projectDictionary setValue:nextController forKey:selectedProject];
     }
 
-    
     [self.navigationController pushViewController:nextController animated:YES];
 }
 

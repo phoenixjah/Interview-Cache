@@ -7,13 +7,15 @@
 //
 
 #import "PeopleViewController.h"
+#import "InterviewCacheViewController.h"
 
-@interface PeopleViewController ()
-
+@interface PeopleViewController ()<UIAlertViewDelegate>
+@property (nonatomic,strong) NSMutableDictionary *peopleDictionary;
 @end
 
 @implementation PeopleViewController
 @synthesize peopleList = _peopleList;
+@synthesize peopleDictionary = _peopleDictionary;
 
 -(void)setPeopleList:(NSMutableArray *)peopleList{
     
@@ -24,10 +26,35 @@
 }
 
 - (IBAction)addPeopleTable:(id)sender {
+    UIAlertView *inputInterviewName = [[UIAlertView alloc] initWithTitle:@"New Interview" 
+                                                               message:nil 
+                                                              delegate:self
+                                                     cancelButtonTitle:@"Cancel" 
+                                                     otherButtonTitles:@"OK", nil];
+    inputInterviewName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [inputInterviewName textFieldAtIndex:0].placeholder = @"Name of Interviewee";
+    [inputInterviewName textFieldAtIndex:0].autocapitalizationType = UITextAutocapitalizationTypeWords;
+    
+    [inputInterviewName show];
+
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {//click done
+        [self.peopleList insertObject:[alertView textFieldAtIndex:0].text atIndex:0];
+        [self.tableView reloadData];
+    }
 }
 
-- (IBAction)editPeopleTable:(id)sender {
-    NSLog(@"in editPeopleTable");
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {
+        InterviewCacheViewController *nextController = [[InterviewCacheViewController alloc] init];
+        nextController.title = [self.peopleList objectAtIndex:0];
+        [self.peopleDictionary setValue:nextController forKey:nextController.title];
+        
+        [self.navigationController pushViewController:nextController animated:YES];
+    }
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -42,6 +69,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.peopleList = [[NSMutableArray alloc] init];
+    self.peopleDictionary = [[NSMutableDictionary alloc] init];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -76,7 +106,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
-    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Project Cell"];
+    }
+    // Configure the cell...
+    cell.textLabel.text = [self.peopleList objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -123,15 +157,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    NSString *selectedPeople = [self.peopleList objectAtIndex:indexPath.row];
+    InterviewCacheViewController *nextController = [self.peopleDictionary valueForKey:selectedPeople];
+    if (nextController == nil) {
+        //NSLog(@"need init new PeopleViewController");
+        nextController = [[InterviewCacheViewController alloc] init];
+        nextController.title = selectedPeople;
+        [self.peopleDictionary setValue:nextController forKey:selectedPeople];
+    }
+    
+    [self.navigationController pushViewController:nextController animated:YES];
 }
 
-- (IBAction)addPeople:(id)sender {
-}
 @end
