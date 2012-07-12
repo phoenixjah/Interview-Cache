@@ -95,24 +95,17 @@
 		C81317F515A6CE2A0059453A /* InterviewCache */ = {
 			isa = PBXGroup;
 			children = (
-				C8943E2415AC1BD700AACE1C /* ProjectViewController.h */,
-				C8943E2515AC1BD700AACE1C /* ProjectViewController.m */,
-				C81317FE15A6CE2A0059453A /* InterviewCacheAppDelegate.h */,
-				C81317FF15A6CE2A0059453A /* InterviewCacheAppDelegate.m */,
+				C867F50A15AE6E5A008DC65E /* IndividualView */,
+				C867F50915AE6E3E008DC65E /* PeopleView */,
+				C867F50815AE6E25008DC65E /* ProjectView */,
 				C813180115A6CE2A0059453A /* MainStoryboard.storyboard */,
 				C813180415A6CE2A0059453A /* InterviewCacheViewController.h */,
 				C813180515A6CE2A0059453A /* InterviewCacheViewController.m */,
-				C8943E2715AC1C4700AACE1C /* PeopleViewController.h */,
-				C8943E2815AC1C4700AACE1C /* PeopleViewController.m */,
-				C81317F615A6CE2A0059453A /* Supporting Files */,
-				B35F396315AC6D6F0018B864 /* ProjectTableCell.h */,
-				B35F396415AC6D6F0018B864 /* ProjectTableCell.m */,
-				C8233E6B15AD5BD900608BDE /* ProfileView.h */,
-				C8233E6C15AD5BDA00608BDE /* ProfileView.m */,
 				C8233E6E15AD741200608BDE /* MyImageInput.h */,
 				C8233E6F15AD741200608BDE /* MyImageInput.m */,
 				C8233E7415AD82B900608BDE /* MyTextInput.h */,
 				C8233E7515AD82B900608BDE /* MyTextInput.m */,
+				C81317F615A6CE2A0059453A /* Supporting Files */,
 			);
 			path = InterviewCache;
 			sourceTree = "<group>";
@@ -120,12 +113,43 @@
 		C81317F615A6CE2A0059453A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C81317FE15A6CE2A0059453A /* InterviewCacheAppDelegate.h */,
+				C81317FF15A6CE2A0059453A /* InterviewCacheAppDelegate.m */,
 				C81317F715A6CE2A0059453A /* InterviewCache-Info.plist */,
 				C81317F815A6CE2A0059453A /* InfoPlist.strings */,
 				C81317FB15A6CE2A0059453A /* main.m */,
 				C81317FD15A6CE2A0059453A /* InterviewCache-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C867F50815AE6E25008DC65E /* ProjectView */ = {
+			isa = PBXGroup;
+			children = (
+				C8943E2515AC1BD700AACE1C /* ProjectViewController.m */,
+				C8943E2415AC1BD700AACE1C /* ProjectViewController.h */,
+				B35F396415AC6D6F0018B864 /* ProjectTableCell.m */,
+				B35F396315AC6D6F0018B864 /* ProjectTableCell.h */,
+			);
+			name = ProjectView;
+			sourceTree = "<group>";
+		};
+		C867F50915AE6E3E008DC65E /* PeopleView */ = {
+			isa = PBXGroup;
+			children = (
+				C8943E2815AC1C4700AACE1C /* PeopleViewController.m */,
+				C8943E2715AC1C4700AACE1C /* PeopleViewController.h */,
+			);
+			name = PeopleView;
+			sourceTree = "<group>";
+		};
+		C867F50A15AE6E5A008DC65E /* IndividualView */ = {
+			isa = PBXGroup;
+			children = (
+				C8233E6C15AD5BDA00608BDE /* ProfileView.m */,
+				C8233E6B15AD5BD900608BDE /* ProfileView.h */,
+			);
+			name = IndividualView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

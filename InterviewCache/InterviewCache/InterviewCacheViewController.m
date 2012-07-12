@@ -21,17 +21,15 @@
 
 #pragma mark - gotoInsight
 -(void)gotoInsightView:(id)sender{
-    UIViewController *viewController = [[UIViewController alloc] init];
-    viewController.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    //viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [UIView transitionWithView:self.view
-                      duration:2
-                       options:UIViewAnimationOptionTransitionCurlDown
+                      duration:0.2 
+                       options:UIViewAnimationOptionTransitionFlipFromRight
                     animations:^{
                         [self.backgroundScrollView removeFromSuperview];
                         [self.view addSubview:self.insightView];
                     }
-                    completion:NULL
-     ];
+                    completion:NULL ];
     
 }
 

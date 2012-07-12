@@ -45,13 +45,27 @@
             </objects>
             <point key="canvasLocation" x="-9" y="-53"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="rQm-LC-jdk">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kk7-0b-nTu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="InsightViewController" id="Sgk-Y7-8BQ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SNp-gD-LLw">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="337" y="-743"/>
+        </scene>
         <!--People View Controller - People-->
         <scene sceneID="gZJ-d3-Vly">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jc5-nx-S6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="PeopleViewController" id="UMz-kt-LgV" customClass="PeopleViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="77" sectionHeaderHeight="22" sectionFooterHeight="22" id="XgK-Ff-6x6">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
