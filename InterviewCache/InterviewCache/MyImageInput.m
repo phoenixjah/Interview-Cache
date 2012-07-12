@@ -9,6 +9,7 @@
 #import "MyImageInput.h"
 
 @implementation MyImageInput
+@synthesize message = _message;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -23,6 +24,7 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     NSLog(@"received touch");
     //call the imagepicker
+    [self.message pickImage:self];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol ImageTouchEvent
+-(void)pickImage:(UIImageView*)atHere;
+@end
 @interface MyImageInput : UIImageView
-
+@property (nonatomic, weak) id <ImageTouchEvent> message;
 @end

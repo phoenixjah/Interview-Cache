@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class ProfileView;
+@class ProfileView, MyTextInput;
 @interface InterviewCacheViewController : UIViewController
 @property (nonatomic,strong) ProfileView *profile;
 @property (nonatomic,strong) UIButton *insightBtn;
-@property (nonatomic,strong) UITextView *insightView;
+@property (nonatomic,strong) MyTextInput *insightView;
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B30E704615AE910800B8FB57 /* ImageSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B30E704515AE910800B8FB57 /* ImageSet.m */; };
 		B35F396515AC6D6F0018B864 /* ProjectTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B35F396415AC6D6F0018B864 /* ProjectTableCell.m */; };
 		C81317F015A6CE2A0059453A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C81317EF15A6CE2A0059453A /* UIKit.framework */; };
 		C81317F215A6CE2A0059453A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C81317F115A6CE2A0059453A /* Foundation.framework */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B30E704415AE910800B8FB57 /* ImageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSet.h; sourceTree = "<group>"; };
+		B30E704515AE910800B8FB57 /* ImageSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSet.m; sourceTree = "<group>"; };
 		B35F396315AC6D6F0018B864 /* ProjectTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTableCell.h; sourceTree = "<group>"; };
 		B35F396415AC6D6F0018B864 /* ProjectTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTableCell.m; sourceTree = "<group>"; };
 		C81317EB15A6CE2A0059453A /* InterviewCache.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterviewCache.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +151,8 @@
 			children = (
 				C8233E6C15AD5BDA00608BDE /* ProfileView.m */,
 				C8233E6B15AD5BD900608BDE /* ProfileView.h */,
+				B30E704415AE910800B8FB57 /* ImageSet.h */,
+				B30E704515AE910800B8FB57 /* ImageSet.m */,
 			);
 			name = IndividualView;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				C8233E6D15AD5BDA00608BDE /* ProfileView.m in Sources */,
 				C8233E7015AD741200608BDE /* MyImageInput.m in Sources */,
 				C8233E7615AD82BA00608BDE /* MyTextInput.m in Sources */,
+				B30E704615AE910800B8FB57 /* ImageSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
