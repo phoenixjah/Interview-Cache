@@ -41,16 +41,16 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.backgroundScrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
     //init subviews
-    self.profile = [[ProfileView alloc] initWithFrame:CGRectMake(0, 0, 640, 200)];
-    self.backgroundScrollView.contentSize = CGSizeMake(500, 1000);
+    self.profile = [[ProfileView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+    self.backgroundScrollView.contentSize = CGSizeMake(320, 1000);
     self.profile.name.text = self.title;
     [self.backgroundScrollView addSubview:self.profile];
     
-    MyTextInput *quote = [[MyTextInput alloc] initWithFrame:CGRectMake(0, 210, 640, 200)];
+    MyTextInput *quote = [[MyTextInput alloc] initWithFrame:CGRectMake(0, 210, 320, 200)];
     quote.backgroundColor = [UIColor yellowColor];
     [self.backgroundScrollView addSubview:quote];
     
-    MyTextInput *notes = [[MyTextInput alloc] initWithFrame:CGRectMake(0, 420, 640, 200) ];
+    MyTextInput *notes = [[MyTextInput alloc] initWithFrame:CGRectMake(0, 420, 320, 200) ];
     notes.backgroundColor = [UIColor brownColor];
     [self.backgroundScrollView addSubview:notes];
     
@@ -59,9 +59,9 @@
                         action:@selector(gotoInsightView:) 
               forControlEvents:UIControlEventTouchDown];
     [self.insightBtn setTitle:@"Insight" forState:UIControlStateNormal];
-    self.insightBtn.frame = CGRectMake(0, 630, 200, 100);
+    self.insightBtn.frame = CGRectMake(0, 630, 320, 100);
     [self.backgroundScrollView addSubview:self.insightBtn];
-    self.insightView = [[UITextView alloc] initWithFrame:CGRectMake(0, 44, 200, 200)];
+    self.insightView = [[UITextView alloc] initWithFrame:CGRectMake(0, 44, 320, 200)];
     
     [self.view addSubview:self.backgroundScrollView];
 }
