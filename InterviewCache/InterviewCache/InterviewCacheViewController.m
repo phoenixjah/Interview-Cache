@@ -12,8 +12,15 @@
 #import "MyImageInput.h"
 #import "ImageSet.h"
 
+#define kBorderInset            20.0
+#define kBorderWidth            1.0
+#define kMarginInset            10.0
 
-@interface InterviewCacheViewController ()<UITextViewDelegate, ImageTouchEvent,UIImagePickerControllerDelegate>
+//Line drawing
+#define kLineWidth              1.0
+@interface InterviewCacheViewController ()<UITextViewDelegate, ImageTouchEvent,UIImagePickerControllerDelegate>{
+    CGSize pageSize;
+}
 @property (nonatomic,strong) UIScrollView *backgroundScrollView;
 @end
 
@@ -25,6 +32,7 @@
 #pragma mark - gotoInsight
 -(void)gotoInsightView:(id)sender{
     //viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self generatePDFPressed];
     [UIView transitionWithView:self.view
                       duration:1 
                        options:UIViewAnimationOptionTransitionFlipFromRight
@@ -58,7 +66,6 @@
                         self.navigationItem.hidesBackButton = NO;
                     }
      ];
-
 }
 #pragma mark - UITextView Delegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text 
@@ -143,5 +150,103 @@
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
+#pragma mark - Generate PDF
+-(void)generatePDFPressed{
+    pageSize = CGSizeMake(612, 792);
+    NSString *fileName = @"Test.pdf";
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *pdfFileName = [documentsDirectory stringByAppendingPathComponent:fileName];
+    
+    [self generatePdfWithFilePath:pdfFileName];
+}
 
+-(void)generatePdfWithFilePath:(NSString*)filePath{
+    UIGraphicsBeginPDFContextToFile(filePath, CGRectZero, nil);
+    //NSLog(@"size %f",pageSize.width);
+    NSInteger currentPage = 0;
+    BOOL done = NO;
+  
+    do
+    {
+        // Mark the beginning of a new page.
+        UIGraphicsBeginPDFPageWithInfo(CGRectMake(0, 0, pageSize.width, pageSize.height), nil);
+        
+        // Draw a page number at the bottom of each page.
+        currentPage++;
+        //[self drawPageNumber:currentPage];
+        
+        //Draw a border for each page.
+        [self drawBorder];
+        
+        //Draw text fo our header.
+        //[self drawHeader];
+        
+        //Draw a line below the header.
+        [self drawLine];
+        
+        //Draw some text for the page.
+        [self drawText];
+        
+        //Draw an image
+        [self drawImage];
+        done = YES;
+    }
+    while (!done);
+   
+    // Close the PDF context and write the contents out.
+    UIGraphicsEndPDFContext();
+}
+
+- (void) drawBorder{
+    CGContextRef    currentContext = UIGraphicsGetCurrentContext();
+    UIColor *borderColor = [UIColor brownColor];
+    CGRect rectFrame = CGRectMake(kBorderInset, kBorderInset, pageSize.width-kBorderInset*2, pageSize.height-kBorderInset*2);
+    CGContextSetStrokeColorWithColor(currentContext, borderColor.CGColor);
+    CGContextSetLineWidth(currentContext, kBorderWidth);
+    CGContextStrokeRect(currentContext, rectFrame);
+}
+
+- (void) drawLine{
+    CGContextRef    currentContext = UIGraphicsGetCurrentContext();
+    
+    CGContextSetLineWidth(currentContext, kLineWidth);
+    
+    CGContextSetStrokeColorWithColor(currentContext, [UIColor blueColor].CGColor);
+    
+    CGPoint startPoint = CGPointMake(kMarginInset + kBorderInset, kMarginInset + kBorderInset + 40.0);
+    CGPoint endPoint = CGPointMake(pageSize.width - 2*kMarginInset -2*kBorderInset, kMarginInset + kBorderInset + 40.0);
+    
+    CGContextBeginPath(currentContext);
+    CGContextMoveToPoint(currentContext, startPoint.x, startPoint.y);
+    CGContextAddLineToPoint(currentContext, endPoint.x, endPoint.y);
+    
+    CGContextClosePath(currentContext);
+    CGContextDrawPath(currentContext, kCGPathFillStroke);
+}
+
+- (void) drawText{
+    CGContextRef    currentContext = UIGraphicsGetCurrentContext();
+    CGContextSetRGBFillColor(currentContext, 0.0, 0.0, 0.0, 1.0);
+    
+    NSString *textToDraw = @"This is a test";
+    
+    UIFont *font = [UIFont systemFontOfSize:14.0];
+    
+    CGSize stringSize = [textToDraw sizeWithFont:font
+                               constrainedToSize:CGSizeMake(pageSize.width - 2*kBorderInset-2*kMarginInset, pageSize.height - 2*kBorderInset - 2*kMarginInset)
+                                   lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGRect renderingRect = CGRectMake(kBorderInset + kMarginInset, kBorderInset + kMarginInset + 50.0, pageSize.width - 2*kBorderInset - 2*kMarginInset, stringSize.height);
+    
+    [textToDraw drawInRect:renderingRect
+                  withFont:font
+             lineBreakMode:UILineBreakModeWordWrap
+                 alignment:UITextAlignmentLeft];
+}
+
+- (void) drawImage{
+    UIImage * demoImage = [UIImage imageNamed:@"demo.png"];
+    [demoImage drawInRect:CGRectMake( (pageSize.width - demoImage.size.width/2)/2, 350, demoImage.size.width/2, demoImage.size.height/2)];
+}
 @end
