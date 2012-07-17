@@ -20,6 +20,10 @@
 		C8233E6D15AD5BDA00608BDE /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8233E6C15AD5BDA00608BDE /* ProfileView.m */; };
 		C8233E7015AD741200608BDE /* MyImageInput.m in Sources */ = {isa = PBXBuildFile; fileRef = C8233E6F15AD741200608BDE /* MyImageInput.m */; };
 		C8233E7615AD82BA00608BDE /* MyTextInput.m in Sources */ = {isa = PBXBuildFile; fileRef = C8233E7515AD82B900608BDE /* MyTextInput.m */; };
+		C83D27DF15B5543100F48EA7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83D27DE15B5543100F48EA7 /* QuartzCore.framework */; };
+		C83D27E715B5549100F48EA7 /* JTTableViewGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = C83D27E215B5549100F48EA7 /* JTTableViewGestureRecognizer.m */; };
+		C83D27E815B5549100F48EA7 /* TransformableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C83D27E415B5549100F48EA7 /* TransformableTableViewCell.m */; };
+		C83D27E915B5549100F48EA7 /* UIColor+JTGestureBasedTableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C83D27E615B5549100F48EA7 /* UIColor+JTGestureBasedTableViewHelper.m */; };
 		C8943E2615AC1BD700AACE1C /* ProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8943E2515AC1BD700AACE1C /* ProjectViewController.m */; };
 		C8943E2915AC1C4700AACE1C /* PeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8943E2815AC1C4700AACE1C /* PeopleViewController.m */; };
 /* End PBXBuildFile section */
@@ -48,6 +52,13 @@
 		C8233E6F15AD741200608BDE /* MyImageInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyImageInput.m; sourceTree = "<group>"; };
 		C8233E7415AD82B900608BDE /* MyTextInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTextInput.h; sourceTree = "<group>"; };
 		C8233E7515AD82B900608BDE /* MyTextInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTextInput.m; sourceTree = "<group>"; };
+		C83D27DE15B5543100F48EA7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C83D27E115B5549100F48EA7 /* JTTableViewGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTTableViewGestureRecognizer.h; sourceTree = "<group>"; };
+		C83D27E215B5549100F48EA7 /* JTTableViewGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTTableViewGestureRecognizer.m; sourceTree = "<group>"; };
+		C83D27E315B5549100F48EA7 /* TransformableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformableTableViewCell.h; sourceTree = "<group>"; };
+		C83D27E415B5549100F48EA7 /* TransformableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransformableTableViewCell.m; sourceTree = "<group>"; };
+		C83D27E515B5549100F48EA7 /* UIColor+JTGestureBasedTableViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JTGestureBasedTableViewHelper.h"; sourceTree = "<group>"; };
+		C83D27E615B5549100F48EA7 /* UIColor+JTGestureBasedTableViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JTGestureBasedTableViewHelper.m"; sourceTree = "<group>"; };
 		C8943E2415AC1BD700AACE1C /* ProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectViewController.h; path = ../ProjectViewController.h; sourceTree = "<group>"; };
 		C8943E2515AC1BD700AACE1C /* ProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectViewController.m; path = ../ProjectViewController.m; sourceTree = "<group>"; };
 		C8943E2715AC1C4700AACE1C /* PeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController.h; sourceTree = "<group>"; };
@@ -59,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C83D27DF15B5543100F48EA7 /* QuartzCore.framework in Frameworks */,
 				C81317F015A6CE2A0059453A /* UIKit.framework in Frameworks */,
 				C81317F215A6CE2A0059453A /* Foundation.framework in Frameworks */,
 				C81317F415A6CE2A0059453A /* CoreGraphics.framework in Frameworks */,
@@ -88,6 +100,7 @@
 		C81317EE15A6CE2A0059453A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C83D27DE15B5543100F48EA7 /* QuartzCore.framework */,
 				C81317EF15A6CE2A0059453A /* UIKit.framework */,
 				C81317F115A6CE2A0059453A /* Foundation.framework */,
 				C81317F315A6CE2A0059453A /* CoreGraphics.framework */,
@@ -98,6 +111,7 @@
 		C81317F515A6CE2A0059453A /* InterviewCache */ = {
 			isa = PBXGroup;
 			children = (
+				C83D27EA15B5549700F48EA7 /* ClearLikeTableView */,
 				C867F50A15AE6E5A008DC65E /* IndividualView */,
 				C867F50915AE6E3E008DC65E /* PeopleView */,
 				C867F50815AE6E25008DC65E /* ProjectView */,
@@ -124,6 +138,19 @@
 				C81317FD15A6CE2A0059453A /* InterviewCache-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C83D27EA15B5549700F48EA7 /* ClearLikeTableView */ = {
+			isa = PBXGroup;
+			children = (
+				C83D27E115B5549100F48EA7 /* JTTableViewGestureRecognizer.h */,
+				C83D27E215B5549100F48EA7 /* JTTableViewGestureRecognizer.m */,
+				C83D27E315B5549100F48EA7 /* TransformableTableViewCell.h */,
+				C83D27E415B5549100F48EA7 /* TransformableTableViewCell.m */,
+				C83D27E515B5549100F48EA7 /* UIColor+JTGestureBasedTableViewHelper.h */,
+				C83D27E615B5549100F48EA7 /* UIColor+JTGestureBasedTableViewHelper.m */,
+			);
+			name = ClearLikeTableView;
 			sourceTree = "<group>";
 		};
 		C867F50815AE6E25008DC65E /* ProjectView */ = {
@@ -230,6 +257,9 @@
 				C8233E7015AD741200608BDE /* MyImageInput.m in Sources */,
 				C8233E7615AD82BA00608BDE /* MyTextInput.m in Sources */,
 				B30E704615AE910800B8FB57 /* ImageSet.m in Sources */,
+				C83D27E715B5549100F48EA7 /* JTTableViewGestureRecognizer.m in Sources */,
+				C83D27E815B5549100F48EA7 /* TransformableTableViewCell.m in Sources */,
+				C83D27E915B5549100F48EA7 /* UIColor+JTGestureBasedTableViewHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

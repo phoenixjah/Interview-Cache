@@ -32,7 +32,7 @@
 #pragma mark - gotoInsight
 -(void)gotoInsightView:(id)sender{
     //viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self generatePDFPressed];
+    //[self generatePDFPressed];
     [UIView transitionWithView:self.view
                       duration:1 
                        options:UIViewAnimationOptionTransitionFlipFromRight
