@@ -8,14 +8,24 @@
 
 #import "PeopleViewController.h"
 #import "InterviewCacheViewController.h"
+#import "JTTableViewGestureRecognizer.h"
+#import "TransformableTableViewCell.h"
 
-@interface PeopleViewController ()<UIAlertViewDelegate>
+@interface PeopleViewController ()<UIAlertViewDelegate,JTTableViewGestureAddingRowDelegate,JTTableViewGestureEditingRowDelegate>
 @property (nonatomic,strong) NSMutableDictionary *peopleDictionary;
+@property (nonatomic,strong) JTTableViewGestureRecognizer *tableViewRecognizer;
 @end
 
 @implementation PeopleViewController
 @synthesize peopleList = _peopleList;
 @synthesize peopleDictionary = _peopleDictionary;
+@synthesize tableViewRecognizer;
+
+#define ADDING_CELL @"Continue..."
+#define DONE_CELL @"Done"
+#define DUMMY_CELL @"Dummy*"
+#define COMMITING_CREATE_CELL_HEIGHT 70
+#define NORMAL_CELL_FINISHING_HEIGHT 70
 
 -(void)setPeopleList:(NSMutableArray *)peopleList{
     
@@ -70,14 +80,20 @@
 {
     [super viewDidLoad];
     
-    self.peopleList = [[NSMutableArray alloc] init];
+    self.peopleList = [NSMutableArray arrayWithObjects:
+                       @"Pull down to create new data",@"Swipe to left to delete",@"Pintch two cell to create new",@"Don't touch me!", nil];
     self.peopleDictionary = [[NSMutableDictionary alloc] init];
+    self.navigationController.navigationBar.hidden = YES;
 
+    self.tableView.backgroundColor = [UIColor blackColor];
+    self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
+    self.tableView.rowHeight       = NORMAL_CELL_FINISHING_HEIGHT;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableViewRecognizer = [self.tableView enableGestureTableViewWithDelegate:self];
 }
 
 - (void)viewDidUnload
@@ -102,16 +118,98 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"People Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    // Configure the cell...
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Project Cell"];
+    NSObject *object = [self.peopleList objectAtIndex:indexPath.row];
+    UIColor *backgroundColor = [UIColor blueColor];
+    if ([object isEqual:ADDING_CELL]) {
+        NSString *cellIdentifier = nil;
+        TransformableTableViewCell *cell = nil;
+        
+        // IndexPath.row == 0 is the case we wanted to pick the pullDown style
+        if (indexPath.row == 0) {
+            cellIdentifier = @"PullDownTableViewCell";
+            cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            
+            if (cell == nil) {
+                cell = [TransformableTableViewCell transformableTableViewCellWithStyle:TransformableTableViewCellStylePullDown
+                                                                       reuseIdentifier:cellIdentifier];
+                cell.textLabel.adjustsFontSizeToFitWidth = YES;
+                cell.textLabel.textColor = [UIColor whiteColor];
+                cell.textLabel.textAlignment = UITextAlignmentCenter;
+            }
+            
+            
+            cell.finishedHeight = COMMITING_CREATE_CELL_HEIGHT;
+            if (cell.frame.size.height > COMMITING_CREATE_CELL_HEIGHT * 2) {
+                cell.imageView.image = [UIImage imageNamed:@"reload.png"];
+                cell.tintColor = [UIColor blackColor];
+                cell.textLabel.text = @"Return to list...";
+            } else if (cell.frame.size.height > COMMITING_CREATE_CELL_HEIGHT) {
+                cell.imageView.image = nil;
+                // Setup tint color
+                cell.tintColor = backgroundColor;
+                cell.textLabel.text = @"Release to create cell...";
+            } else {
+                cell.imageView.image = nil;
+                // Setup tint color
+                cell.tintColor = backgroundColor;
+                cell.textLabel.text = @"Continue Pulling...";
+            }
+            cell.contentView.backgroundColor = [UIColor clearColor];
+            cell.detailTextLabel.text = @" ";
+            return cell;
+            
+        } else {
+            // Otherwise is the case we wanted to pick the pullDown style
+            cellIdentifier = @"UnfoldingTableViewCell";
+            cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            
+            if (cell == nil) {
+                cell = [TransformableTableViewCell transformableTableViewCellWithStyle:TransformableTableViewCellStyleUnfolding
+                                                                       reuseIdentifier:cellIdentifier];
+                cell.textLabel.adjustsFontSizeToFitWidth = YES;
+                cell.textLabel.textColor = [UIColor whiteColor];
+                cell.textLabel.textAlignment = UITextAlignmentCenter;
+            }
+            
+            // Setup tint color
+            cell.tintColor = backgroundColor;
+            
+            cell.finishedHeight = COMMITING_CREATE_CELL_HEIGHT;
+            if (cell.frame.size.height > COMMITING_CREATE_CELL_HEIGHT) {
+                cell.textLabel.text = @"Release to create cell...";
+            } else {
+                cell.textLabel.text = @"Continue Pinching...";
+            }
+            cell.contentView.backgroundColor = [UIColor clearColor];
+            cell.detailTextLabel.text = @" ";
+            return cell;
+        }
+        
+    } else {
+        
+        static NSString *cellIdentifier = @"MyCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.textLabel.adjustsFontSizeToFitWidth = YES;
+            cell.textLabel.backgroundColor = [UIColor clearColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", (NSString *)object];
+        cell.detailTextLabel.text = @" ";
+        if ([object isEqual:DONE_CELL]) {
+            cell.textLabel.textColor = [UIColor grayColor];
+            cell.contentView.backgroundColor = [UIColor darkGrayColor];
+        } else if ([object isEqual:DUMMY_CELL]) {
+            cell.textLabel.text = @"";
+            cell.contentView.backgroundColor = [UIColor clearColor];
+        } else {
+            cell.textLabel.textColor = [UIColor whiteColor];
+            cell.contentView.backgroundColor = backgroundColor;
+        }
+        return cell;
     }
-    // Configure the cell...
-    cell.textLabel.text = [self.peopleList objectAtIndex:indexPath.row];
-    return cell;
 }
 
 /*
@@ -152,6 +250,79 @@
     return YES;
 }
 */
+#pragma mark - JTTableViewGestureAddingRowDelegate
+
+- (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsAddRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.peopleList insertObject:ADDING_CELL atIndex:indexPath.row];
+}
+
+- (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsCommitRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.peopleList replaceObjectAtIndex:indexPath.row withObject:@"Added!"];
+    TransformableTableViewCell *cell = (id)[gestureRecognizer.tableView cellForRowAtIndexPath:indexPath];
+    if (cell.frame.size.height > COMMITING_CREATE_CELL_HEIGHT * 2) {
+        [self.peopleList removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+        // Return to list
+    }
+    else {
+        cell.finishedHeight = NORMAL_CELL_FINISHING_HEIGHT;
+        cell.imageView.image = nil;
+        cell.textLabel.text = @"Just Added!";
+    }
+}
+
+- (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsDiscardRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.peopleList removeObjectAtIndex:indexPath.row];
+}
+
+#pragma mark JTTableViewGestureEditingRowDelegate
+
+- (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer didEnterEditingState:(JTTableViewCellEditingState)state forRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    UIColor *backgroundColor = nil;
+    switch (state) {
+        case JTTableViewCellEditingStateMiddle:
+            backgroundColor = [UIColor redColor];
+            break;
+        case JTTableViewCellEditingStateRight:
+            backgroundColor = [UIColor greenColor];
+            break;
+        default:
+            backgroundColor = [UIColor darkGrayColor];
+            break;
+    }
+    cell.contentView.backgroundColor = backgroundColor;
+    if ([cell isKindOfClass:[TransformableTableViewCell class]]) {
+        ((TransformableTableViewCell *)cell).tintColor = backgroundColor;
+    }
+}
+
+// This is needed to be implemented to let our delegate choose whether the panning gesture should work
+- (BOOL)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer commitEditingState:(JTTableViewCellEditingState)state forRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableView *tableView = gestureRecognizer.tableView;
+    [tableView beginUpdates];
+    if (state == JTTableViewCellEditingStateLeft) {
+        // An example to discard the cell at JTTableViewCellEditingStateLeft
+        [self.peopleList removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    } else if (state == JTTableViewCellEditingStateRight) {
+        // An example to retain the cell at commiting at JTTableViewCellEditingStateRight
+        [self.peopleList replaceObjectAtIndex:indexPath.row withObject:DONE_CELL];
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    } else {
+        // JTTableViewCellEditingStateMiddle shouldn't really happen in
+        // - [JTTableViewGestureDelegate gestureRecognizer:commitEditingState:forRowAtIndexPath:]
+    }
+    [tableView endUpdates];
+    
+    // Row color needs update after datasource changes, reload it.
+    [tableView performSelector:@selector(reloadVisibleRowsExceptIndexPath:) withObject:indexPath afterDelay:JTTableViewRowAnimationDuration];
+}
 
 #pragma mark - Table view delegate
 
