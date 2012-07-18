@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyTextInput : UITextView
+@interface MyTextInput : UITextField
 @property (nonatomic,weak) UIImageView *backgroundImage;
 -(void)setBackground:(NSString*)imageName;
 @end

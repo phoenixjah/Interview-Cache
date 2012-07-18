@@ -18,7 +18,7 @@
     if (self) {
         self.portrait = [[MyImageInput alloc] initWithFrame:CGRectMake(10, 10, 180, 180)];
         self.name = [[UILabel alloc] initWithFrame:CGRectMake(200, 10, 100, 50)];
-        self.description = [[UITextView alloc] initWithFrame:CGRectMake(200, 80, 100, 80)];
+        self.description = [[UITextField alloc] initWithFrame:CGRectMake(200, 80, 100, 80)];
         self.backgroundColor = [UIColor whiteColor];
         self.portrait.backgroundColor = [UIColor grayColor];
         self.name.backgroundColor = [UIColor yellowColor];

@@ -12,5 +12,5 @@
 @interface ProfileView : UIView
 @property (nonatomic,strong) MyImageInput *portrait;
 @property (nonatomic,strong) UILabel *name;
-@property (nonatomic,strong) UITextView *description;
+@property (nonatomic,strong) UITextField *description;
 @end

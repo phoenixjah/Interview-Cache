@@ -22,7 +22,7 @@
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"received touch");
+    //NSLog(@"received touch");
     //call the imagepicker
     [self.message pickImage:self];
 }

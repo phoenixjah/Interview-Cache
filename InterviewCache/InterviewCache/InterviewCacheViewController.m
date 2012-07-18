@@ -11,6 +11,7 @@
 #import "MyTextInput.h"
 #import "MyImageInput.h"
 #import "ImageSet.h"
+#import <MessageUI/MessageUI.h>
 
 #define kBorderInset            20.0
 #define kBorderWidth            1.0
@@ -18,7 +19,7 @@
 
 //Line drawing
 #define kLineWidth              1.0
-@interface InterviewCacheViewController ()<UITextViewDelegate, ImageTouchEvent,UIImagePickerControllerDelegate>{
+@interface InterviewCacheViewController ()<UITextFieldDelegate, ImageTouchEvent,UIImagePickerControllerDelegate,MFMailComposeViewControllerDelegate>{
     CGSize pageSize;
 }
 @property (nonatomic,strong) UIScrollView *backgroundScrollView;
@@ -67,27 +68,30 @@
                     }
      ];
 }
-#pragma mark - UITextView Delegate
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text 
-{
+#pragma mark - Email Delegate
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark - UITextField Delegate
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    CGRect screenRect = [self.backgroundScrollView convertRect:textField.frame toView:self.view];
+    NSLog(@"%f",screenRect.origin.y);
     
-    if([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        return NO;
+    if (screenRect.origin.y > 216) {
+        [self.backgroundScrollView setContentOffset:CGPointMake(0, textField.frame.origin.y)
+                                           animated:YES
+         ];
     }
     
-    return YES;
 }
--(void)textViewDidBeginEditing:(UITextView *)textView{
-    //NSLog(@"Keyboard Appear?");
-    [self.backgroundScrollView setContentOffset:CGPointMake(0, textView.frame.origin.y) 
-                                       animated:YES];
-}
--(void)textViewDidEndEditing:(UITextView *)textView{
-    //NSLog(@"Keyboard Disappear?");
-    [self.backgroundScrollView setContentOffset:CGPointMake(0, textView.frame.origin.y - 100) 
-                                       animated:YES];
 
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    [self.backgroundScrollView setContentOffset:CGPointMake(0, textField.frame.origin.y - 20) animated:YES
+     ];
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return NO;
 }
 #pragma mark - ImageTouchEvent Delegate
 -(void)pickImage:(UIImageView *)atHere{
@@ -109,8 +113,9 @@
     self.backgroundScrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
     //init subviews
     self.profile = [[ProfileView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-    self.backgroundScrollView.contentSize = CGSizeMake(320, 1000);
+    self.backgroundScrollView.contentSize = CGSizeMake(320, 1200);
     self.profile.name.text = self.title;
+    self.profile.description.delegate = self;
     self.profile.portrait.message = self;
     [self.backgroundScrollView addSubview:self.profile];
     
@@ -137,6 +142,10 @@
     ImageSet *imageSet = [[ImageSet alloc] initWithFrame:CGRectMake(0, 630, 320, 200)];
     [self.backgroundScrollView addSubview:imageSet];
     
+    UIButton *sendPDF = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [sendPDF addTarget:self action:@selector(generatePDFPressed) forControlEvents:UIControlEventTouchDown];
+    sendPDF.frame = CGRectMake(0, 950, 320, 50);
+    [self.backgroundScrollView addSubview:sendPDF];
     [self.view addSubview:self.backgroundScrollView];
 }
 
@@ -196,6 +205,7 @@
    
     // Close the PDF context and write the contents out.
     UIGraphicsEndPDFContext();
+    [self sendPDFWithFilePath:filePath];
 }
 
 - (void) drawBorder{
@@ -229,7 +239,7 @@
     CGContextRef    currentContext = UIGraphicsGetCurrentContext();
     CGContextSetRGBFillColor(currentContext, 0.0, 0.0, 0.0, 1.0);
     
-    NSString *textToDraw = @"This is a test";
+    NSString *textToDraw = self.profile.name.text;
     
     UIFont *font = [UIFont systemFontOfSize:14.0];
     
@@ -246,7 +256,37 @@
 }
 
 - (void) drawImage{
-    UIImage * demoImage = [UIImage imageNamed:@"demo.png"];
+    UIImage *demoImage = self.profile.portrait.image;
     [demoImage drawInRect:CGRectMake( (pageSize.width - demoImage.size.width/2)/2, 350, demoImage.size.width/2, demoImage.size.height/2)];
+}
+
+-(void)sendPDFWithFilePath:(NSString*)path{    
+    MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+    picker.mailComposeDelegate = self;
+    NSString *content = @"Interview sharing";
+    [picker setSubject:content];
+    
+    
+    //ATTACH FILE
+
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]){//Does file exist?
+        //NSLog(@"in NewCardSorting sendResult File exists to attach");
+        
+        NSData *myData = [NSData dataWithContentsOfFile:path];
+        
+        [picker addAttachmentData:myData mimeType:@"application/pdf"
+                         fileName:@"Arthur"];
+        
+    }
+    
+    //CREATE EMAIL BODY TEXT
+    
+    content = @"Interview at Date:";
+    [picker setMessageBody:content isHTML:NO];
+    picker.modalPresentationStyle = UIModalPresentationPageSheet;
+    
+    //PRESENT THE MAIL COMPOSITION INTERFACE
+    [self presentViewController:picker animated:YES completion:nil];
 }
 @end

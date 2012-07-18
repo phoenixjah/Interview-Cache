@@ -21,12 +21,6 @@
     }
     return self;
 }
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    if (self.text) {
-        NSLog(@"have text");
-        [self resignFirstResponder];
-    }
-}
 
 -(void)setBackground:(NSString *)imageName{
     self.backgroundImage.image = [UIImage imageNamed:imageName];

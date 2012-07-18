@@ -11,7 +11,7 @@
 #import "JTTableViewGestureRecognizer.h"
 #import "TransformableTableViewCell.h"
 
-@interface PeopleViewController ()<UIAlertViewDelegate,JTTableViewGestureAddingRowDelegate,JTTableViewGestureEditingRowDelegate>
+@interface PeopleViewController ()<UIAlertViewDelegate,JTTableViewGestureAddingRowDelegate,JTTableViewGestureEditingRowDelegate,UITextFieldDelegate>
 @property (nonatomic,strong) NSMutableDictionary *peopleDictionary;
 @property (nonatomic,strong) JTTableViewGestureRecognizer *tableViewRecognizer;
 @end
@@ -23,7 +23,7 @@
 
 #define ADDING_CELL @"Continue..."
 #define DONE_CELL @"Done"
-#define DUMMY_CELL @"Dummy*"
+#define DUMMY_CELL @"Dummy"
 #define COMMITING_CREATE_CELL_HEIGHT 70
 #define NORMAL_CELL_FINISHING_HEIGHT 70
 
@@ -35,7 +35,7 @@
     }
 }
 
-- (IBAction)addPeopleTable:(id)sender {
+- (void)addPeopleTable{
     UIAlertView *inputInterviewName = [[UIAlertView alloc] initWithTitle:@"New Interview" 
                                                                message:nil 
                                                               delegate:self
@@ -55,7 +55,7 @@
         [self.tableView reloadData];
     }
 }
-
+/*
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     
     if (buttonIndex == 1) {
@@ -66,7 +66,7 @@
         [self.navigationController pushViewController:nextController animated:YES];
     }
 }
-
+*/
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -107,7 +107,16 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
+#pragma mark - TextField Delegate
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField.text != nil) {
+        //[self.peopleList insertObject:textField.text atIndex:0];
+    }
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return NO;
+}
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -257,8 +266,12 @@
 }
 
 - (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsCommitRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.peopleList replaceObjectAtIndex:indexPath.row withObject:@"Added!"];
+    
+    //NSLog(@"%d",indexPath.row);
     TransformableTableViewCell *cell = (id)[gestureRecognizer.tableView cellForRowAtIndexPath:indexPath];
+    
+    [self.peopleList replaceObjectAtIndex:indexPath.row withObject:@"Added!"];
+
     if (cell.frame.size.height > COMMITING_CREATE_CELL_HEIGHT * 2) {
         [self.peopleList removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
@@ -268,6 +281,7 @@
         cell.finishedHeight = NORMAL_CELL_FINISHING_HEIGHT;
         cell.imageView.image = nil;
         cell.textLabel.text = @"Just Added!";
+        //cell.textLabel.text = [self.peopleList objectAtIndex:indexPath.row];
     }
 }
 
