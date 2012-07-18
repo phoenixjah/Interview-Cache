@@ -26,6 +26,9 @@
 		C83D27E915B5549100F48EA7 /* UIColor+JTGestureBasedTableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C83D27E615B5549100F48EA7 /* UIColor+JTGestureBasedTableViewHelper.m */; };
 		C8943E2615AC1BD700AACE1C /* ProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8943E2515AC1BD700AACE1C /* ProjectViewController.m */; };
 		C8943E2915AC1C4700AACE1C /* PeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8943E2815AC1C4700AACE1C /* PeopleViewController.m */; };
+		C8C75A6315B68F9500957916 /* Photo.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C75A6015B68F9500957916 /* Photo.png */; };
+		C8C75A6415B68F9500957916 /* Postit.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C75A6115B68F9500957916 /* Postit.png */; };
+		C8C75A6515B68F9500957916 /* Quote.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C75A6215B68F9500957916 /* Quote.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +66,9 @@
 		C8943E2515AC1BD700AACE1C /* ProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectViewController.m; path = ../ProjectViewController.m; sourceTree = "<group>"; };
 		C8943E2715AC1C4700AACE1C /* PeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController.h; sourceTree = "<group>"; };
 		C8943E2815AC1C4700AACE1C /* PeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController.m; sourceTree = "<group>"; };
+		C8C75A6015B68F9500957916 /* Photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Photo.png; sourceTree = "<group>"; };
+		C8C75A6115B68F9500957916 /* Postit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Postit.png; sourceTree = "<group>"; };
+		C8C75A6215B68F9500957916 /* Quote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Quote.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,9 @@
 		C81317E015A6CE2A0059453A = {
 			isa = PBXGroup;
 			children = (
+				C8C75A6015B68F9500957916 /* Photo.png */,
+				C8C75A6115B68F9500957916 /* Postit.png */,
+				C8C75A6215B68F9500957916 /* Quote.png */,
 				C81317F515A6CE2A0059453A /* InterviewCache */,
 				C81317EE15A6CE2A0059453A /* Frameworks */,
 				C81317EC15A6CE2A0059453A /* Products */,
@@ -237,6 +246,9 @@
 			files = (
 				C81317FA15A6CE2A0059453A /* InfoPlist.strings in Resources */,
 				C813180315A6CE2A0059453A /* MainStoryboard.storyboard in Resources */,
+				C8C75A6315B68F9500957916 /* Photo.png in Resources */,
+				C8C75A6415B68F9500957916 /* Postit.png in Resources */,
+				C8C75A6515B68F9500957916 /* Quote.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
