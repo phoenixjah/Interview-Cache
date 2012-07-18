@@ -83,7 +83,6 @@
     self.peopleList = [NSMutableArray arrayWithObjects:
                        @"Pull down to create new data",@"Swipe to left to delete",@"Pintch two cell to create new",@"Don't touch me!", nil];
     self.peopleDictionary = [[NSMutableDictionary alloc] init];
-    self.navigationController.navigationBar.hidden = YES;
 
     self.tableView.backgroundColor = [UIColor blackColor];
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
@@ -101,6 +100,10 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -128,7 +131,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSObject *object = [self.peopleList objectAtIndex:indexPath.row];
-    UIColor *backgroundColor = [UIColor blueColor];
+    UIColor *backgroundColor = [UIColor clearColor];
     if ([object isEqual:ADDING_CELL]) {
         NSString *cellIdentifier = nil;
         TransformableTableViewCell *cell = nil;
@@ -144,6 +147,7 @@
                 cell.textLabel.adjustsFontSizeToFitWidth = YES;
                 cell.textLabel.textColor = [UIColor whiteColor];
                 cell.textLabel.textAlignment = UITextAlignmentCenter;
+                
             }
             
             
@@ -297,7 +301,7 @@
     UIColor *backgroundColor = nil;
     switch (state) {
         case JTTableViewCellEditingStateMiddle:
-            backgroundColor = [UIColor redColor];
+            backgroundColor = [UIColor blueColor];
             break;
         case JTTableViewCellEditingStateRight:
             backgroundColor = [UIColor greenColor];

@@ -30,7 +30,7 @@
         CATransform3D transform = CATransform3DIdentity;
         transform.m34 = -1/500.f;
         [self.contentView.layer setSublayerTransform:transform];
-        
+
         self.textLabel.layer.anchorPoint = CGPointMake(0.5, 0.0);
 
         self.detailTextLabel.layer.anchorPoint = CGPointMake(0.5, 1.0);
@@ -83,7 +83,7 @@
         CATransform3D transform = CATransform3DIdentity;
         transform.m34 = -1/500.f;
         [self.contentView.layer setSublayerTransform:transform];
-        
+
         self.textLabel.layer.anchorPoint = CGPointMake(0.5, 1.0);
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
